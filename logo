@@ -1,4 +1,6 @@
---zpx-os logo script
+-- zpx_loading.lua
+
+-- logo
 local logo = [[
 ZZZZZZ  III  PPPPPPP
    ZZ   III  PPPPPPP
@@ -6,20 +8,21 @@ ZZZZZZ  III  PPPPPPP
 ZZZZZZ  III  PPP
 ]]
 
--- get the size of the terminal
-local termWidth, termHeight = term.getSize()
-
--- split the logo into lines
-local lines = {}
-for line in logo:gmatch("[^\n]+") do
-    table.insert(lines, line)
+-- slow print function
+function slowPrint(text, delay)
+    for char in text:gmatch(".") do
+        write(char)
+        os.sleep(delay)
+    end
 end
 
--- calculate the center position
-local centerY = 1 -- top of the screen
-for _, line in ipairs(lines) do
-    local centerX = math.floor((termWidth - #line) / 2)
-    term.setCursorPos(centerX + 1, centerY)
-    print(line)
-    centerY = centerY + 1 -- move down for the next line
+-- print the logo
+print(logo)
+
+-- loading bar
+slowPrint("Loading: [", 0.05)
+for i = 1, term.getSize() - 14 do  -- adjust for "Loading: [" and "]"
+    write("=")
+    os.sleep(0.05)
 end
+print("]")  -- close the loading bar
