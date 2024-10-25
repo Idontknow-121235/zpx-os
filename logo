@@ -1,0 +1,24 @@
+--zpx-os logo script
+local logo = [[
+ ______  _____  _     _      _____  _______
+  ____/ |_____]  \___/  ___ |     | |______
+ /_____ |       _/   \_     |_____| ______|
+]]
+
+-- get the size of the terminal
+local termWidth, termHeight = term.getSize()
+
+-- split the logo into lines
+local lines = {}
+for line in logo:gmatch("[^\n]+") do
+    table.insert(lines, line)
+end
+
+-- calculate the center position
+local centerY = 1 -- top of the screen
+for _, line in ipairs(lines) do
+    local centerX = math.floor((termWidth - #line) / 2)
+    term.setCursorPos(centerX + 1, centerY)
+    print(line)
+    centerY = centerY + 1 -- move down for the next line
+end
