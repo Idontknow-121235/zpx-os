@@ -1,0 +1,55 @@
+-- zpx_os.lua
+
+-- slow print function
+function slowPrint(text, delay)
+    for char in text:gmatch(".") do
+        write(char)
+        os.sleep(delay)
+    end
+end
+
+-- function to create a loading bar
+local function loadingBar()
+    local barLength = term.getSize() - 14  -- adjust for "Loading: [" and "]"
+    
+    slowPrint("Press F to boot to shell", 0.05)
+    print()  -- move to the next line
+    slowPrint("Loading: [", 0.05)
+
+    for i = 1, barLength do
+        write("=")
+        os.sleep(0.05)
+    end
+    print("]")  -- close the loading bar
+end
+
+-- function to display the menu
+local function displayMenu()
+    term.clear()
+    term.setCursorPos(1, 1)
+    term.setTextColor(colors.red)
+    print("ZPX-OS")
+    term.setTextColor(colors.white)
+
+    print("1. Shutdown")
+    print("2. Reboot")
+    print("3. Command Prompt")
+end
+
+-- run the loading bar
+loadingBar()
+
+-- display the menu
+displayMenu()
+
+-- wait for user input
+while true do
+    local event, key = os.pullEvent("key")
+    if key == keys.f then
+        print("Booting to shell...")
+        error("Terminating the program.")  -- terminate the program
+    end
+end
+
+-- replace this with your shell code or handle menu selection
+-- shell.run("your_shell_program")
