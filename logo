@@ -1,13 +1,9 @@
 --zpx-os logo script
 local logo = [[
-                                 
-                                 
- _____ ____  __                  
-|_  / '_ \ \/ /                  
- / /| |_) >  <                   
-/___| .__/_/\_\                  
-    | |                          
-    |_|                
+ZZZZZZ  III  PPPPPPP
+   ZZ   III  PPPPPPP
+ ZZ     III  PPP
+ZZZZZZ  III  PPP
 ]]
 
 -- get the size of the terminal
